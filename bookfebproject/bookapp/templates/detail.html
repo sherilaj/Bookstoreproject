@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card-detail">
+                            <img src="{{book.BookCoverImage.url}}" alt="{{book.BookCoverImageAlternativeText}}"
+                             style="width:270px;height:250px;">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card text-center card-content-detail">
+                            <p>Title: {{book.Title}}</p>
+                            <p>Offer Price: <del>{{book.UnitPrice}}</del> {{book.OfferPrice}}</p>
+                            <p>Author: {{book.Authors}}</p>
+                            <p>Available No: {{book.Stock}}</p>
+                            {% for row in rating %}
+                            <p>Rating: {{row.Rating}}</p>
+                            {% endfor %}
+                        <a class="btn btn-primary mx-auto" style="width: 50%;" href="{% url 'cartapp:add_to_cart' book.BookId %}">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
+{% endblock %}
